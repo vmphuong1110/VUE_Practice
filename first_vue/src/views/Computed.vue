@@ -27,7 +27,7 @@ h2 {
   font-size: 2rem;
 }
 </style> -->
-<template>
+<!-- <template>
   <div class="point">
     <h2>Status</h2>
 
@@ -52,7 +52,7 @@ const status = computed(() => {
   return 'Died'
 })
 
-// Hàm xử lý
+// Event process
 function increase() {
   point.value += 10
 }
@@ -81,4 +81,56 @@ button {
 button:hover {
   background-color: #2c8f6e;
 }
+</style> -->
+<template>
+  <section>
+    <h3>Computed lesson</h3>
+
+    <div>
+      <p>Count: {{ count }}</p>
+      <p>Double (computed): {{ double }}</p>
+      <p>Triple KKill(computed): {{ triple }}</p>
+      <button @click="increment">Tăng</button>
+    </div>
+
+    <hr />
+
+    <div>
+      <label>First name: <input v-model="firstName" /></label>
+      <label style="margin-left:8px">Last name: <input v-model="lastName" /></label>
+      <p>Full name (computed): {{ fullName }}</p>
+    </div>
+  </section>
+</template>
+
+<script setup lang="ts">
+import { ref, computed } from 'vue'
+
+
+const count = ref(0)
+function increment() {
+   count.value++ 
+  }
+
+// read-only computed
+const double = computed(() => count.value * 2)
+const triple = computed(() => count.value * 3)
+// reactive strings cho name
+const firstName = ref('')
+const lastName = ref('')
+
+// computed
+const fullName = computed(() => `${firstName.value} ${lastName.value}`)
+</script>
+
+<style scoped>
+section {
+   padding:12px;
+    border:1px solid #ddd;
+     border-radius:6px; 
+    }
+label {
+   display:inline-block; 
+   margin-top:8px;
+    }
 </style>
